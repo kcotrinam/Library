@@ -68,18 +68,18 @@ const changeStatus = () => {
   });
 };
 
-
 const deleteCard = () => {
   const deleteBtns = [...document.querySelectorAll('.btn-delete')];
   deleteBtns.forEach(btn => {
     btn.addEventListener('click', e => {
+      const renderCollection = document.querySelector('.books-container');
+      const child = document.getElementById(e.target.dataset.id);
       library.splice(e.target.dataset.id, 1);
       setLocalStorage();
-      render();
+      renderCollection.removeChild(child);
     });
   });
 };
-
 
 export const render = () => {
   const renderCollection = document.querySelector('.books-container');
@@ -90,8 +90,3 @@ export const render = () => {
   deleteCard();
   changeStatus();
 };
-
-
-window.addEventListener('DOMContentLoaded', () => {
-
-});

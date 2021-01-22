@@ -5,7 +5,7 @@ const createBtn = document.querySelector('.create-btn');
 const selectedStatus = () => {
   let value;
   const statusChosen = [...document.getElementsByName('status')];
-  statusChosen.map(opt => {
+  statusChosen.forEach(opt => {
     if (opt.checked) {
       value = opt.value;
     }
@@ -19,6 +19,7 @@ createBtn.addEventListener('click', e => {
   const author = document.querySelector('#author').value;
   const pages = document.querySelector('#pages').value;
   const statusValue = selectedStatus();
+  document.querySelector('form').reset();
 
   const newBook = new Book(title, author, pages, statusValue);
   newBook.addBook();
@@ -30,7 +31,3 @@ window.addEventListener('DOMContentLoaded', () => {
   getLocalStorage();
   render();
 });
-
-// const value = selectedStatus()
-
-// console.log(value)
