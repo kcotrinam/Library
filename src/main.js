@@ -1,4 +1,4 @@
-import Book, { setLocalStorage, getLocalStorage, render } from './logic.js';
+import Book, { setLocalStorage, getLocalStorage, render } from './logic';
 
 const createBtn = document.querySelector('.create-btn');
 

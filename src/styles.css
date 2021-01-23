@@ -1,0 +1,15 @@
+body {
+  background-color: #ddd;
+}
+
+header {
+  background-color: #57a0d3;
+}
+
+.card {
+  max-height: 193px;
+}
+
+.status {
+  cursor: pointer;
+}

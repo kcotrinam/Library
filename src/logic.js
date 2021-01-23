@@ -25,33 +25,27 @@ export const getLocalStorage = () => {
   }
 };
 
+const statusBgColor = (status) => {
+  if (status.toUpperCase() === 'READ') {
+    return `<div class="card-text status | bg-success text-white | text-center">${status}</div>`;
+  }
+  return `<div class="card-text status | bg-danger text-white | text-center">${status}</div>`;
+};
+
 const fewCard = (book, id) => {
   const renderCollection = document.querySelector('.books-container');
-  const container = document.createElement('div');
-  const title = document.createElement('h1');
-  const author = document.createElement('h2');
-  const page = document.createElement('h4');
-  const statusContainer = document.createElement('span');
-  const deleteBtn = document.createElement('button');
 
-  container.id = id;
-  deleteBtn.dataset.id = id;
-
-  title.innerHTML = book.title;
-  author.innerHTML = book.author;
-  page.innerHTML = book.pages;
-  statusContainer.innerHTML = book.status;
-  deleteBtn.textContent = 'Delete';
-  deleteBtn.classList.add('btn-delete');
-  statusContainer.classList.add('status');
-
-  container.appendChild(title);
-  container.appendChild(author);
-  container.appendChild(page);
-  container.appendChild(statusContainer);
-  container.appendChild(deleteBtn);
-
-  renderCollection.appendChild(container);
+  const card = `<article clasS="card col-sm-4 col-md-3"  id=${id}>
+                <div class="card-header">${book.title}</div>
+                <div class="card-body">
+                  <div class="card-title">${book.author}</div>
+                  <div class="card-text">${book.pages}</div>
+                  ${statusBgColor(book.status)}
+                </div>
+                <button class="btn-delete btn btn-danger" data-id=${id}>Delete</button>
+                </article>  
+                `;
+  renderCollection.insertAdjacentHTML('beforeend', card);
 };
 
 
@@ -61,8 +55,12 @@ const changeStatus = () => {
     status.addEventListener('click', e => {
       if (e.target.innerHTML.toUpperCase() === 'READ') {
         status.innerHTML = 'Not read';
+        status.classList.toggle('bg-danger');
+        status.classList.toggle('bg-success');
       } else {
         status.innerHTML = 'Read';
+        status.classList.toggle('bg-danger');
+        status.classList.toggle('bg-success');
       }
     });
   });
